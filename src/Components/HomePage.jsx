@@ -4,10 +4,7 @@ import Banner from "../Components/Banner";
 import Categories from "../Components/Categories";
 import Navbar from "../Components/Navbar";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Footer from "./Footer";
-import Users from "../../../e-commerse_backend/models/users";
-import { Link } from "react-router-dom";
 
 function HomePage() {
   const [electronics, setElectronics] = useState([]);
