@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Cairo+Play&family=Covered+By+Your+Grace&family=Fragment+Mono&family=Heebo:wght@800&family=Inter:wght@700&family=Overpass:wght@400;700&family=PT+Sans:wght@700&family=Quantico:ital,wght@1,700&family=Rajdhani:wght@700&family=Raleway&family=Roboto:wght@300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  height: 10vh;
+}
+
+.banner {
+  height: 30vw;
+}
+
+.banner_image {
+  background-size: contain;
+  height: 100%;
+}
+
+.box {
+  background-size: contain;
+  width: 50vw;
+}
+
+.category {
+  height: stretch;
+  width: 100vw;
+  overflow: scroll;
+}
+
+.category-name {
+  font-family: "Heebo";
+  font-size: 2rem;
+}
+
+img {
+  max-width: none;
+}
+
+.image {
+  width: 20vw;
+  height: 20vw;
+}
+
+.cart {
+  margin-bottom: 10vw;
+}
+
+.cart-img {
+  width: 20vw;
+}
+
+.cart-heading {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 2rem;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20vh;
+  font-size: 8vh;
+  justify-content: center;
+  align-items: center;
+  font-family: "Rajdhani";
+}
+
+.empty-cart {
+  font-family: "Rajdhani";
+}
+
+.title {
+  font-family: "Raleway";
+}
+
+.selected-product-image {
+  height: 24vw;
+  width: 20vw;
+}
+
+.selected-product {
+  width: 80vw;
+  margin: auto;
+  height: 100vh;
+}
+
+.s-prod {
+  height: 100vh;
+}
+
+.rate-price {
+  width: 45vw;
+}
+
+.description {
+  width: 46vw;
+  text-align: justify;
+  font-family: "Overpass";
+}
+
+.name {
+  font-family: "Heebo";
+  font-size: 1.5rem;
+  width: 46vw;
+}
+
+.form {
+  display: grid;
+}
+
+.cart_icon:hover {
+  color: darkgoldenrod;
+  cursor: pointer;
+}
+
+.links {
+  cursor: pointer;
+}
+
+.links:hover {
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.checkout {
+  display: grid;
+  grid-template-rows: 0fr 1fr 0fr;
+  /* place-items: center; */
+}
+
+.checkout-head {
+  font-family: "Rajdhani";
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+.place-order {
+  font-family: "Inter";
+}
+
+.footer {
+  font-family: "Cairo Play";
+}
+
+.welcome {
+  font-family: "Cairo Play";
+  font-size: 3vw;
+}
+
+.inps {
+  width: 90vw;
+  height: 10vh;
+  text-indent: 2vw;
+}
+
+.form {
+  height: 80vh;
+  justify-items: center;
+  align-items: center;
+}
+
+.inp1 {
+  grid-column: 1/-1;
+  width: 90vw;
+}
+
+.inp2 {
+  width: 45vw;
+  justify-content: flex-end;
+}
+.inp3 {
+  width: 45vw;
+  left: 0;
+}
+
+.inp4 {
+  grid-column: 1 / -1;
+  width: 90vw;
+}
+
+.inp5 {
+  grid-column: 1/-1;
+}
+
+.order_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2rem;
+}
+
+.order_image {
+  width: 13vw;
+  margin: 2rem;
+}
