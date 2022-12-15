@@ -95,7 +95,7 @@ function Navbar() {
       </Link>
       <Link
         className="w-full links flex items-center justify-center"
-        to="/login"
+        to="/loginPage"
       >
         Login
       </Link>
