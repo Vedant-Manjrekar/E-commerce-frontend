@@ -5,7 +5,7 @@ import "./index.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartSlice from "./features/cartSlice";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import selectedSlice from "./features/selectedSlice";
 import loginUserSlice from "./features/loginUserSlice";
 
@@ -20,9 +20,9 @@ const store = configureStore({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter hashType="slash">
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </React.StrictMode>
 );
