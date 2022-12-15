@@ -5,7 +5,7 @@ import "./index.css";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import cartSlice from "./features/cartSlice";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import selectedSlice from "./features/selectedSlice";
 import loginUserSlice from "./features/loginUserSlice";
 
