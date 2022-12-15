@@ -1,18 +1,7 @@
 import React from "react";
-// import { AiOutlineShoppingCart } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  SwipeableDrawer,
-  Button,
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-} from "@mui/material";
+import { SwipeableDrawer, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 console.log(JSON.parse(localStorage.getItem("user")));
@@ -20,11 +9,6 @@ console.log(JSON.parse(localStorage.getItem("user")));
 const logoutStyle = {
   display: JSON.parse(localStorage.getItem("user")) ? "flex" : "none",
 };
-
-// const isActive = {
-//   pointerEvents: JSON.parse(localStorage.getItem("user")) ? "auto" : "none",
-//   color: JSON.parse(localStorage.getItem("user")) ? "black" : "gray",
-// };
 
 function Navbar() {
   const navigate = useNavigate();

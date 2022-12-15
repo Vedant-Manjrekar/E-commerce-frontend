@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://vocal-eclair-a8b91f.netlify.app",
+  baseURL: "https://backend-ucqv.onrender.com",
 });
 
 export default instance;
