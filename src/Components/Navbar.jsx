@@ -14,12 +14,18 @@ function Navbar() {
   const navigate = useNavigate();
 
   function logout() {
-    localStorage.removeItem("user");
-    let event = new Event("storage");
-    window.dispatchEvent(event);
-    location.reload();
+    const decision = confirm("Do you want to logout?");
 
-    navigate("/");
+    if (decision) {
+      localStorage.removeItem("user");
+      let event = new Event("storage");
+      window.dispatchEvent(event);
+      location.reload();
+
+      navigate("/");
+    } else {
+      return;
+    }
   }
 
   const anchor = "right";
@@ -100,8 +106,10 @@ function Navbar() {
       </Link>
       <div className="logo row-auto p-2"></div>
       <div className="account p-2 right-5 absolute">
-        <Button onClick={toggleDrawer(anchor, true)}>
-          {<FaBars size={"2vw"} color="white" />}
+        <Button onClick={toggleDrawer(anchor, true)} className="barbox">
+          <div className="bars"></div>
+          <div className="bars"></div>
+          <div className="bars"></div>
         </Button>
         <SwipeableDrawer
           anchor={anchor}

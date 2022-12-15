@@ -153,38 +153,83 @@ img {
 }
 
 .inps {
-  width: 90vw;
+  width: -webkit-fill-available;
   height: 10vh;
-  text-indent: 2vw;
+  border-radius: 12px;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  border: none;
+  text-indent: 20px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 60vw;
+  margin: auto;
+}
+
+.submit {
+  width: -webkit-fill-available;
+  height: 10vh;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: rgb(59, 58, 58);
+  font-family: "Inter";
+  background: linear-gradient(145deg, #7ad79a, #90ffb7);
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 .form {
-  height: 80vh;
+  height: 60vh;
+  position: absolute;
+  top: 20vh;
+  width: 80vw;
   justify-items: center;
   align-items: center;
+  gap: 0.5rem;
+}
+
+.bars {
+  width: 31px;
+  background-color: white;
+  height: 5px;
+  margin: 2px auto;
+}
+
+.barbox {
+  display: flex;
+  flex-direction: column;
 }
 
 .inp1 {
   grid-column: 1/-1;
-  width: 90vw;
+  width: -webkit-fill-available;
 }
 
 .inp2 {
-  width: 45vw;
+  width: -webkit-fill-available;
   justify-content: flex-end;
 }
 .inp3 {
-  width: 45vw;
+  width: -webkit-fill-available;
   left: 0;
 }
 
 .inp4 {
   grid-column: 1 / -1;
-  width: 90vw;
+  width: -webkit-fill-available;
 }
 
 .inp5 {
   grid-column: 1/-1;
+  width: -webkit-fill-available;
+  background: linear-gradient(145deg, #7ad79a, #90ffb7);
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 }
 
 .order_item {

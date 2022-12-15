@@ -13,6 +13,15 @@ function SignUp() {
   function signUpUser(event) {
     event.preventDefault();
 
+    const emailVal = email.current.value;
+
+    if (emailVal.includes("@") === false) {
+      alert("Invalid Email.");
+      return;
+    }
+
+    console.log(emailVal);
+
     axios
       .post("/signup", {
         name: name.current.value,

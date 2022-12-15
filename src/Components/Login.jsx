@@ -8,51 +8,67 @@ function Login() {
   const email = useRef();
   const password = useRef();
 
-  function loginUser() {
-    axios
-      .post("/login", {
-        email: email.current.value,
-        password: password.current.value,
-      })
-      .then((response) => {
-        console.log(response.data);
+  document.addEventListener("keypress", (event) => {
+    if (event.key == "Enter") {
+      loginUser();
+    }
+  });
 
-        window.localStorage.setItem("user", JSON.stringify(response.data));
+  function loginUser(event) {
+    if (email.current.value && password.current.value) {
+      axios
+        .post("/login", {
+          email: email.current.value,
+          password: password.current.value,
+        })
+        .then((response) => {
+          console.log(response.data);
+          localStorage.removeItem("user");
 
-        let event = new Event("storage");
-        dispatchEvent(event);
+          window.localStorage.setItem("user", JSON.stringify(response.data));
 
-        navigate("/");
+          let event = new Event("storage");
+          dispatchEvent(event);
 
-        location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          navigate("/");
+
+          location.reload();
+        })
+        .catch((error) => {
+          event.preventDefault();
+          alert(error.response.data);
+        });
+    } else {
+      alert("Please enter login details.");
+    }
   }
 
   return (
     <>
       <Navbar />
-      <div className="login grid">
+      <div className="login">
         <input
-          className="border border-black"
-          type="text"
+          className="inps border border-black"
+          placeholder="Enter email"
+          type="email"
           ref={email}
           id="email"
         />
         <input
-          className="border border-black"
+          className="inps border border-black"
           type="password"
+          placeholder="Enter password"
           ref={password}
           id="pass"
         />
-        <input
-          className="border border-black"
+        <button
+          className="submit border border-black"
           type="submit"
           value="Login"
           onClick={loginUser}
-        />
+        >
+          Login
+        </button>
       </div>
     </>
   );
