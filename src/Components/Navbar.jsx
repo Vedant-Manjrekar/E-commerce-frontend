@@ -5,6 +5,7 @@ import { SwipeableDrawer, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import logo from "../assets/cart-favicon.png";
 
 console.log(JSON.parse(localStorage.getItem("user")));
 
@@ -63,7 +64,9 @@ function Navbar() {
         className="navbar w-stretch grid items-center grid-cols-3 bg-gradient-to-r from-pink-400 to-rose-900"
       >
         <Link to="/">
-          <div className="logo px-7 text-white">Logo</div>
+          <div className="logo px-7 text-white">
+            <img src={logo} className="w-11 object-contain" alt="logo" />
+          </div>
         </Link>
         <div className="logo row-auto p-2"></div>
         <div className="account p-2 right-5 ">
