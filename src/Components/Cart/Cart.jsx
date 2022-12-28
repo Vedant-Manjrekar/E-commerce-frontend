@@ -56,24 +56,22 @@ function Cart() {
   console.log(unique);
 
   return (
-    <div className="cart">
+    <div className="cart_main" id="navbar">
       {/* // // Cart Heading */}
-      <div className="grid grid-cols-3 justify-evenly items-center border-none fixed w-full bg-slate-50 top-0">
-        <Link to="/" className="ml-2">
-          <BiArrowBack size={"2vw"} />
+      <div className="cart_nav">
+        <Link to="/" className="back_cart">
+          <BiArrowBack size={"3vh"} />
         </Link>
-        <p className="cart-heading p-4 text-center inline text-2xl">
-          Your Cart
-        </p>
-        <div className="flex items-center justify-end">
-          <p className="bg-green-400 inline-block p-2 rounded-md mr-3 text-white">
+        <p className="cart-heading">Your Cart</p>
+        <div className="items-center justify-end inline-block">
+          <p className="bg-green-400 p-1 text-white chk_btn">
             <Link to="/checkout"> Checkout Now</Link>
           </p>
         </div>
       </div>
 
       {/* // // Cart Elements */}
-      <div className="grid h-max mt-10">
+      <div className="grid cart_elms">
         {unique ? (
           unique.length > 0 ? (
             unique.map((prod) => {

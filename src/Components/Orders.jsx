@@ -19,14 +19,16 @@ function Orders() {
   console.log(order);
 
   return (
-    <div className="orders">
+    <>
       <Navbar />
-      {order.final_order ? (
-        order.final_order?.map((item) => <OrderItem order={item} />)
-      ) : (
-        <p>Your have no orders yet.</p>
-      )}
-    </div>
+      <div className="orders">
+        {order.final_order ? (
+          order.final_order?.map((item) => <OrderItem order={item} />)
+        ) : (
+          <p>Your have no orders yet.</p>
+        )}
+      </div>
+    </>
   );
 }
 

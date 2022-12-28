@@ -6,7 +6,7 @@ function Categories({ prod, name }) {
   return (
     <>
       <p className="category-name pl-3 pt-3">{name}</p>
-      <div className="category px-5 pb-5 flex">
+      <div className="category flex">
         {prod.map((elem) => {
           return <Product img={elem} key={Math.random()} />;
         })}

@@ -61,6 +61,9 @@ function Product({ img }) {
 
   return (
     <div className="box border-2 h-auto w-50 p-4" key={Math.random()}>
+      <div className="cart cursor-pointer" onClick={getInfo}>
+        <BsFillCartPlusFill size="30" className="cart_icon" />
+      </div>
       <Link to="/selected-product">
         <img
           src={img.image}
@@ -71,10 +74,7 @@ function Product({ img }) {
       </Link>
       <div className="info">
         <div className="flex items-center">
-          <div className="title font-bold p-5 pr-5">{img.title}</div>
-          <div className="cart pr-4 pt-4 cursor-pointer" onClick={getInfo}>
-            <BsFillCartPlusFill size="30" className="cart_icon" />
-          </div>
+          <div className="title font-bold">{img.title}</div>
         </div>
 
         <div className="flex justify-between">
@@ -87,9 +87,9 @@ function Product({ img }) {
               precision={0.5}
               readOnly
             />
-            ({img.rating.rate})
+            {/* <div className="rating">({img.rating.rate})</div> */}
           </div>
-          <div className="price text-xl pr-2">$ {img.price} </div>
+          <div className="price ml-2">${img.price} </div>
         </div>
         {/* <div className="description">{img.description} </div> */}
       </div>

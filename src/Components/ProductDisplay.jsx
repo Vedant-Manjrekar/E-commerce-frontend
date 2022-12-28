@@ -69,12 +69,12 @@ function ProductDisplay() {
 
   return (
     <>
-      <div className="s-prod m-5">
-        <Link to="/" className="left-4 top-4 absolute">
-          <BiArrowBack size={"3vw"} />
+      <div className="s-prod flex m-5">
+        <Link to="/" className="back top-4 absolute">
+          <BiArrowBack size={"3vh"} />
         </Link>
-        <Link to="/cart" className="right-4 top-4 absolute">
-          <AiOutlineShoppingCart size={"3vw"} />
+        <Link to="/cart" className="cart top-4 absolute">
+          <AiOutlineShoppingCart size={"3vh"} />
         </Link>
         <div className="selected-product grid place-items-center border-2">
           {/* image */}
@@ -84,29 +84,31 @@ function ProductDisplay() {
             alt=""
           />
           {/* name */}
-          <div className="name pl-2 flex justify-between">
-            {selectedProduct.title}
-            <div
-              className="cart_icon"
-              onClick={getInfo}
-              style={{ display: user ? "block" : "none" }}
-            >
-              <BsFillCartPlusFill />
+
+          <div className="name pl-2 flex">
+            <div className="flex head">
+              {selectedProduct.title}
+              <div
+                className="cart_icon1"
+                onClick={getInfo}
+                style={{ display: user ? "block" : "none" }}
+              >
+                <BsFillCartPlusFill />
+              </div>
             </div>
-          </div>
-          {/* price, cart, ratings */}
-          <div className="rate-price flex justify-between items-center">
-            <div className="rating flex items-center">
-              <Rating
-                name="half-rating-read"
-                className="mr-2"
-                defaultValue={selectedProduct.ratings}
-                precision={0.5}
-                readOnly
-              />
-              ({selectedProduct.ratings})
+            {/* price, cart, ratings */}
+            <div className="rate-price flex justify-between items-center">
+              <div className="rating_sm">
+                <Rating
+                  name="half-rating-read"
+                  className="mr-2"
+                  defaultValue={selectedProduct.ratings}
+                  precision={0.5}
+                  readOnly
+                />
+              </div>
+              <div className="price text-3xl">${selectedProduct.price}</div>
             </div>
-            <div className="price text-3xl mr-3">$ {selectedProduct.price}</div>
           </div>
           {/* description */}
           <div className="description">{selectedProduct.description}.</div>

@@ -60,26 +60,28 @@ function HomePage() {
 
   console.log(JSON.parse(localStorage.getItem("user")));
   return (
-    <div className="App bg-white">
+    <>
       <Navbar />
-      {user ? (
-        <p className="welcome h-max w-screen text-center py-6">
-          Welcome {loginUser?.name}{" "}
-        </p>
-      ) : (
-        // <p className="welcome h-max w-screen text-center py-6">
-        //   Please <Link to="/login">Login</Link> /{" "}
-        //   <Link to="/signup">Signup</Link> for a better purchasing experience.
-        // </p>
-        <p></p>
-      )}
-      <Banner />
-      <Categories prod={mensClothing} name="Mens Wear" />
-      <Categories prod={womensClothing} name="Female Fashion" />
-      <Categories prod={electronics} name="Electronics" />
-      <Categories prod={jewellery} name="Jewellery" />
-      <Footer />
-    </div>
+      <div className="App bg-white" id="app_main">
+        {user ? (
+          <p className="welcome h-max w-screen text-center py-6">
+            Welcome {loginUser?.name}{" "}
+          </p>
+        ) : (
+          // <p className="welcome h-max w-screen text-center py-6">
+          //   Please <Link to="/login">Login</Link> /{" "}
+          //   <Link to="/signup">Signup</Link> for a better purchasing experience.
+          // </p>
+          <p></p>
+        )}
+        <Banner />
+        <Categories prod={mensClothing} name="Mens Wear" />
+        <Categories prod={womensClothing} name="Female Fashion" />
+        <Categories prod={electronics} name="Electronics" />
+        <Categories prod={jewellery} name="Jewellery" />
+        <Footer />
+      </div>
+    </>
   );
 }
 
