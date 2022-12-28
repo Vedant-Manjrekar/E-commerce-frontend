@@ -73,6 +73,7 @@ body {
 
 .info {
   /* position: relative; */
+  text-align: center;
   margin-top: 2rem;
   top: 31px;
 }
@@ -110,10 +111,10 @@ img {
 }
 
 .cart {
-  right: -9rem;
+  /* right: -9rem;
   position: relative;
   display: inline-block;
-  width: min-content;
+  width: min-content; */
 }
 
 .cart_main {
@@ -332,11 +333,6 @@ img {
   .box {
     width: 90vw;
     margin-right: 0.5rem;
-    /* margin-left: 0.5rem; */
-  }
-
-  .category {
-    padding-left: 0.5rem;
   }
 
   .image {
@@ -348,7 +344,6 @@ img {
     width: 1.5rem;
     position: relative;
     top: -7px;
-    left: 15px;
   }
 
   .title {
@@ -368,7 +363,9 @@ img {
   }
 
   .cart {
-    right: -8rem;
+    display: flex;
+    justify-content: flex-end;
+    width: -webkit-fill-available;
   }
 
   .bars {

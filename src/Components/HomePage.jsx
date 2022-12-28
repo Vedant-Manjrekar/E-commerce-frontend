@@ -68,11 +68,7 @@ function HomePage() {
             Welcome {loginUser?.name}{" "}
           </p>
         ) : (
-          // <p className="welcome h-max w-screen text-center py-6">
-          //   Please <Link to="/login">Login</Link> /{" "}
-          //   <Link to="/signup">Signup</Link> for a better purchasing experience.
-          // </p>
-          <p></p>
+          <p className="welcome">'</p>
         )}
         <Banner />
         <Categories prod={mensClothing} name="Mens Wear" />

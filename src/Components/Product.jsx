@@ -73,7 +73,7 @@ function Product({ img }) {
         />
       </Link>
       <div className="info">
-        <div className="flex items-center">
+        <div className="">
           <div className="title font-bold">{img.title}</div>
         </div>
 
