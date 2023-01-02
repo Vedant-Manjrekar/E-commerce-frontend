@@ -4,16 +4,15 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useDispatch } from "react-redux";
-import { addProduct, removeProduct } from "../features/selectedSlice";
 import { Link } from "react-router-dom";
+import { SELECTED_PRODUCT } from "../assets/constants/constants";
 
 function Banner() {
   const [banner, setBanner] = useState([]);
-  const dispatch = useDispatch();
 
+  // fetching products on refresh.
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=5", {
+    fetch("https://fakestoreapi.com/products?limit=7", {
       mode: "cors",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -23,9 +22,9 @@ function Banner() {
       .then((json) => setBanner(json));
   }, []);
 
+  // function to view product.
   function lookProduct(prod) {
-    console.log(prod);
-    dispatch(removeProduct({}));
+    localStorage.removeItem(SELECTED_PRODUCT);
 
     const selectedItem = {
       title: prod.title,
@@ -36,10 +35,8 @@ function Banner() {
       quantity: 1,
     };
 
-    dispatch(addProduct(selectedItem));
+    localStorage.setItem(SELECTED_PRODUCT, JSON.stringify(selectedItem));
   }
-
-  // console.log(banner);
 
   return (
     <div className="banner w-stretch p-4 px-60 flex">
@@ -54,11 +51,12 @@ function Banner() {
         {banner.map((elem) => {
           return (
             <SwiperSlide className="flex justify-center" key={Math.random()}>
-              <Link to="selected-product">
+              <Link to="/selected-product">
                 <img
                   key={Math.random()}
                   onClick={() => lookProduct(elem)}
                   src={elem.image}
+                  loading="lazy"
                   className="banner_image"
                   alt="banner image"
                 />

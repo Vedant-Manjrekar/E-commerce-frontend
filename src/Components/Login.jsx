@@ -1,19 +1,24 @@
 import axios from "../axios/axios";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { LOGGED_USER } from "../assets/constants/constants";
 
 function Login() {
   const navigate = useNavigate();
+
+  // refs for fetching login fields
   const email = useRef();
   const password = useRef();
 
+  // submits user login when pressed 'Enter'.
   document.addEventListener("keypress", (event) => {
     if (event.key == "Enter") {
       loginUser();
     }
   });
 
+  // function to log user in.
   function loginUser(event) {
     if (email.current.value && password.current.value) {
       axios
@@ -22,10 +27,12 @@ function Login() {
           password: password.current.value,
         })
         .then((response) => {
-          console.log(response.data);
-          localStorage.removeItem("user");
+          localStorage.removeItem(LOGGED_USER);
 
-          window.localStorage.setItem("user", JSON.stringify(response.data));
+          window.localStorage.setItem(
+            LOGGED_USER,
+            JSON.stringify(response.data)
+          );
 
           let event = new Event("storage");
           dispatchEvent(event);
@@ -35,7 +42,6 @@ function Login() {
           location.reload();
         })
         .catch((error) => {
-          event.preventDefault();
           alert(error.response.data);
         });
     } else {
@@ -45,8 +51,12 @@ function Login() {
 
   return (
     <>
+      {/* navbar */}
       <Navbar />
+
+      {/* main page */}
       <div className="login">
+        {/* email */}
         <input
           className="inps border border-black"
           placeholder="Enter email"
@@ -54,6 +64,8 @@ function Login() {
           ref={email}
           id="email"
         />
+
+        {/* password */}
         <input
           className="inps border border-black"
           type="password"
@@ -61,6 +73,8 @@ function Login() {
           ref={password}
           id="pass"
         />
+
+        {/* Login Button  */}
         <button
           className="submit border border-black"
           type="submit"

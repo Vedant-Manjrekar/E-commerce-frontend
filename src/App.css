@@ -22,6 +22,16 @@ body {
   height: 10vh;
 }
 
+.cart_elms {
+  margin-bottom: 10vh;
+}
+
+.cart {
+  display: flex;
+  justify-content: flex-end;
+  width: -webkit-fill-available;
+}
+
 .link {
   text-align: center;
 }
@@ -54,7 +64,13 @@ body {
 
 .account {
   position: inherit;
-  text-align: right;
+  display: flex;
+  margin-left: 22px;
+}
+
+.acc {
+  padding: 1rem;
+  width: 22vw;
 }
 
 .cut {
@@ -89,6 +105,16 @@ body {
   margin-left: 1rem;
 }
 
+.disp_cart {
+  position: absolute;
+  right: 2rem;
+}
+
+.disp_back {
+  position: absolute;
+  left: 2rem;
+}
+
 .category {
   height: stretch;
   width: 100vw;
@@ -98,6 +124,9 @@ body {
 .category-name {
   font-family: "Heebo";
   font-size: 2rem;
+  display: inline-block;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 img {
@@ -110,16 +139,8 @@ img {
   height: 20vw;
 }
 
-.cart {
-  /* right: -9rem;
-  position: relative;
-  display: inline-block;
-  width: min-content; */
-}
-
 .cart_main {
   display: grid;
-  place-content: space-evenly;
 }
 
 .chk_btn {
@@ -137,7 +158,12 @@ img {
 
 .cart-heading {
   font-family: "Rajdhani", sans-serif;
+  text-align: center;
   font-size: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
   display: inline-block;
 }
 
@@ -162,25 +188,29 @@ img {
 
 .selected-product-image {
   height: 24vw;
+  margin: 2rem 0;
   width: 20vw;
 }
 
 .selected-product {
   width: 80vw;
-  margin: auto;
-  height: 100vh;
+  margin: 0 auto;
+  height: max-content;
+  overflow: scroll;
 }
 
 .s-prod {
   height: 100vh;
+  margin-top: 1rem;
 }
 
 .rate-price {
   width: 45vw;
-  margin-top: 2vh;
+  margin: 2rem 0;
 }
 
 .description {
+  margin-bottom: 2rem;
   width: 46vw;
   text-align: justify;
   font-family: "Overpass";
@@ -211,16 +241,21 @@ img {
   transition: 0.2s;
 }
 
+.cart_total {
+  width: 100%;
+}
+
 .checkout {
   display: grid;
   grid-template-rows: 0fr 1fr 0fr;
+  height: 90vh;
   /* place-items: center; */
 }
 
 .checkout-head {
   font-family: "Rajdhani";
   font-size: 2rem;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 
 .place-order {
@@ -244,6 +279,49 @@ img {
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
   border: none;
   text-indent: 20px;
+}
+
+.section {
+  display: flex;
+}
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.logo {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+}
+
+.address {
+  width: 100%;
+  text-align: left;
+  overflow-wrap: break-word;
+  text-transform: capitalize;
+}
+
+.acc_title {
+  font-weight: bold;
+}
+
+.account_info {
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: ghostwhite;
+  box-shadow: -5px 3px 62px -33px rgba(0, 0, 0, 0.75);
+  z-index: 2;
+  color: black;
+  position: absolute;
+  top: 14vh;
+  border: 2px solid black;
+  right: 4vw;
+  width: max-content;
 }
 
 .login {
@@ -271,12 +349,13 @@ img {
 
 .form {
   height: 60vh;
-  position: absolute;
-  top: 20vh;
+  position: relative;
   width: 80vw;
-  justify-items: center;
+  left: 0;
+  right: 0;
   align-items: center;
   gap: 0.5rem;
+  margin: auto;
 }
 
 .bars {
@@ -289,6 +368,7 @@ img {
 .barbox {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .inp1 {
@@ -329,6 +409,17 @@ img {
   margin: 2rem;
 }
 
+.s-prod {
+  display: flex;
+  flex-direction: column;
+}
+
+.disp_nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
 @media (min-width: 0px) and (max-width: 400px) {
   .box {
     width: 90vw;
@@ -338,6 +429,15 @@ img {
   .image {
     object-fit: contain;
     margin: auto;
+  }
+
+  .empty-cart {
+    font-size: 2rem;
+  }
+
+  .empty :is(a) {
+    font-size: 1rem;
+    margin-top: 2rem;
   }
 
   .cart_icon {
@@ -380,7 +480,8 @@ img {
   }
 
   .selected-product {
-    height: 90vh;
+    height: auto;
+    width: 72vw;
     place-content: space-evenly;
   }
 
@@ -418,12 +519,16 @@ img {
     padding: 1rem 0.5rem;
   }
 
+  .s-prod {
+    height: 85vh;
+    overflow: scroll;
+  }
+
   .chk_btn {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: auto;
     width: max-content;
     font-size: 13px;
   }
@@ -431,5 +536,47 @@ img {
   .cart-heading {
     font-size: 18px;
     display: inline-block;
+    position: static;
+  }
+
+  .form {
+    top: 30vh;
+  }
+
+  .checkout-head {
+    padding: 0;
+  }
+
+  .account_info {
+    top: 10vh;
+  }
+
+  .acc {
+    width: 61vw;
+  }
+
+  .disp_cart {
+    right: 1rem;
+    top: 1.5rem;
+  }
+
+  .disp_back {
+    left: 0.8rem;
+    top: 1.5rem;
+  }
+
+  .cart_title {
+    font-size: 12px;
+  }
+
+  .cart_btn {
+    padding: 0px;
+    height: 2rem;
+    font-size: 12px;
+    width: 2rem;
+  }
+
+  .quantity {
+    font-size: 12px;
   }
 }

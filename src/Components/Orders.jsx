@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { LOGGED_USER } from "../assets/constants/constants.js";
 import axios from "../axios/axios.js";
 import Navbar from "./Navbar.jsx";
 import OrderItem from "./OrderItem.jsx";
 
 function Orders() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  // local user data
+  const user = JSON.parse(localStorage.getItem(LOGGED_USER));
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
@@ -15,8 +17,6 @@ function Orders() {
       })
       .catch((error) => console.log(error));
   }, []);
-
-  console.log(order);
 
   return (
     <>

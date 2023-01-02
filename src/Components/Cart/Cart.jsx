@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import CartTotal from "./CartTotal";
@@ -8,13 +7,11 @@ import axios from "../../axios/axios";
 
 function Cart() {
   const user = JSON.parse(localStorage?.getItem("user"));
-  const globalState = useSelector((state) => state.cart.value);
   const [loginUser, setLoginUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
 
   let sum = 0;
-  console.log(globalState);
   console.log(user?.order);
 
   window.addEventListener("storage", () => {
@@ -30,15 +27,22 @@ function Cart() {
 
   // ! Logic for removing duplicate cart items.
 
-  // * Array to store unique object names.
+  // Array to store unique object names.
   const uniqueArr = [];
 
-  // * filtering globalstate array.
+  console.log("hello", uniqueArr);
+  useEffect(() => {
+    uniqueArr.length == 0
+      ? (document.getElementById("chk_out").style.display = "none")
+      : (document.getElementById("chk_out").style.display = "block");
+  }, [uniqueArr]);
+
+  // filtering globalstate array.
   const unique = loginUser?.order?.filter((prod) => {
     // * boolean flag to see whether "uniqueArr" already has the current objects title.
     const isDuplicate = uniqueArr.includes(prod.title);
 
-    // // if "uniqueArr" does not have the current objects title.
+    // if "uniqueArr" does not have the current objects title.
     if (!isDuplicate) {
       // * Adds the current object's title to "uniqueArr"
       uniqueArr.push(prod.title);
@@ -46,7 +50,7 @@ function Cart() {
       // * stores the current object in "unique"
       return true;
     }
-    // // if "uniqueArr" has the current objects title.
+    // if "uniqueArr" has the current objects title.
     else {
       // * Adds nothing to the 'unique'
       return false;
@@ -57,20 +61,20 @@ function Cart() {
 
   return (
     <div className="cart_main" id="navbar">
-      {/* // // Cart Heading */}
+      {/* Cart Heading */}
       <div className="cart_nav">
         <Link to="/" className="back_cart">
           <BiArrowBack size={"3vh"} />
         </Link>
         <p className="cart-heading">Your Cart</p>
-        <div className="items-center justify-end inline-block">
-          <p className="bg-green-400 p-1 text-white chk_btn">
+        <div className="place-content-end flex justify-end">
+          <p className="p-1 font-bold text-green-400 chk_btn" id="chk_out">
             <Link to="/checkout"> Checkout Now</Link>
           </p>
         </div>
       </div>
 
-      {/* // // Cart Elements */}
+      {/* Cart Elements */}
       <div className="grid cart_elms">
         {unique ? (
           unique.length > 0 ? (
@@ -91,7 +95,7 @@ function Cart() {
         )}
       </div>
 
-      {/* // // Total Amount */}
+      {/* Total Amount */}
       <CartTotal amount={sum} />
     </div>
   );

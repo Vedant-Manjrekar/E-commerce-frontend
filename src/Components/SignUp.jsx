@@ -1,26 +1,30 @@
 import React from "react";
 import { useRef } from "react";
 import axios from "../axios/axios";
-import bcrypt from "bcryptjs";
 import Navbar from "../Components/Navbar";
+import { useNavigate } from "react-router-dom";
+import { LOGGED_USER } from "../assets/constants/constants";
 
 function SignUp() {
+  const navigate = useNavigate();
+
+  // refs for fetching signup fields.
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const phone = useRef(null);
 
+  // function to signup user.
   function signUpUser(event) {
     event.preventDefault();
 
     const emailVal = email.current.value;
 
+    // checking for valid email.
     if (emailVal.includes("@") === false) {
       alert("Invalid Email.");
       return;
     }
-
-    console.log(emailVal);
 
     axios
       .post("/signup", {
@@ -30,14 +34,31 @@ function SignUp() {
         password: password.current.value,
         address: {},
       })
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        const user = {
+          name: name.current.value,
+          email: email.current.value,
+          phone: phone.current.value,
+        };
+
+        localStorage.setItem(LOGGED_USER, JSON.stringify(user));
+        alert("SignUp Successfull");
+        navigate("/");
+      })
+      .catch((error) => {
+        alert(error);
+        return;
+      });
   }
 
   return (
     <>
+      {/* Navbar */}
       <Navbar />
+
+      {/* container */}
       <div className="signup flex items-center justify-center w-screen">
+        {/* Main form */}
         <form className="grid p-5 grid-cols-2 justify-center form">
           <input
             required

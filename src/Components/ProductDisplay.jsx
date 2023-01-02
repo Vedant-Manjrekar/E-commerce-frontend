@@ -1,25 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Rating } from "@mui/material";
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { addToCart } from "../features/cartSlice";
 import Footer from "./Footer";
 import axios from "../axios/axios.js";
-import { useState } from "react";
-import { display } from "@mui/system";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { LOGGED_USER, SELECTED_PRODUCT } from "../assets/constants/constants";
 
 function ProductDisplay() {
-  const selectedProduct = JSON.parse(localStorage.getItem("selected-product"));
-  const allProducts = useSelector((state) => state.cart.value);
-  const loginUser = JSON.parse(localStorage.getItem("user"));
+  const selectedProduct = JSON.parse(localStorage.getItem(SELECTED_PRODUCT));
+  const loginUser = JSON.parse(localStorage.getItem(LOGGED_USER));
   const [user, setUser] = useState(null);
 
-  console.log(selectedProduct);
-
+  // whether to display users name or not.
   useEffect(() => {
     if (loginUser == null || loginUser == "User not found") {
       setUser(false);
@@ -30,7 +25,8 @@ function ProductDisplay() {
     console.log(user);
   }, []);
 
-  function getInfo() {
+  // function to add to cart.
+  function addToCart() {
     if (loginUser == null || loginUser == "User not found") {
       setUser(false);
       alert("Please Login/Signup");
@@ -48,34 +44,34 @@ function ProductDisplay() {
       quantity: 1,
     };
 
-    console.log(loginUser.email);
-    console.log(selectedProduct);
-
     axios
       .post("/addToCart", {
         email: loginUser.email,
         order: cartedItem,
       })
       .then((data) => {
-        console.log(data);
-        console.log(data.data);
-        localStorage.removeItem("user");
-        localStorage.setItem("user", JSON.stringify(data.data));
+        localStorage.removeItem(LOGGED_USER);
+        localStorage.setItem(LOGGED_USER, JSON.stringify(data.data));
       })
       .catch((err) => console.log(err));
   }
 
-  console.log(allProducts);
-
   return (
     <>
-      <div className="s-prod flex m-5">
-        <Link to="/" className="back top-4 absolute">
-          <BiArrowBack size={"3vh"} />
-        </Link>
-        <Link to="/cart" className="cart top-4 absolute">
-          <AiOutlineShoppingCart size={"3vh"} />
-        </Link>
+      <div className="s-prod">
+        {/* navbar for product display. */}
+        <div className="disp_nav">
+          {/* back button */}
+          <Link to="/" className="disp_back">
+            <BiArrowBack size={"3vh"} />
+          </Link>
+
+          {/* cart button */}
+          <Link to="/cart" className="disp_cart">
+            <AiOutlineShoppingCart size={"3vh"} />
+          </Link>
+        </div>
+
         <div className="selected-product grid place-items-center border-2">
           {/* image */}
           <img
@@ -83,19 +79,22 @@ function ProductDisplay() {
             className="selected-product-image"
             alt=""
           />
-          {/* name */}
 
+          {/* title */}
           <div className="name pl-2 flex">
             <div className="flex head">
               {selectedProduct.title}
+
+              {/* add to cart */}
               <div
                 className="cart_icon1"
-                onClick={getInfo}
+                onClick={addToCart}
                 style={{ display: user ? "block" : "none" }}
               >
                 <BsFillCartPlusFill />
               </div>
             </div>
+
             {/* price, cart, ratings */}
             <div className="rate-price flex justify-between items-center">
               <div className="rating_sm">

@@ -1,52 +1,15 @@
 import React, { useState } from "react";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../features/cartSlice";
-import { addProduct, removeProduct } from "../features/selectedSlice";
 import { Rating } from "@mui/material";
 import axios from "../axios/axios";
-import { useEffect } from "react";
+import { SELECTED_PRODUCT, LOGGED_USER } from "../assets/constants/constants";
 
 function Product({ img }) {
-  const dispatch = useDispatch();
-  const globalState = useSelector((state) => state.cart.value);
-  // const [globalState, setGlobalState] = useState();
-  const selectedProd = useSelector((state) => state.product.value);
-  const loginUser = JSON.parse(localStorage.getItem("user"));
+  const loginUser = JSON.parse(localStorage.getItem(LOGGED_USER));
 
-  function getInfo() {
-    const cartedItem = {
-      title: img.title,
-      ratings: img.rating.rate,
-      price: img.price,
-      image: img.image,
-      description: img.description,
-      quantity: 1,
-    };
-
-    if (loginUser == null || loginUser == "User not found") {
-      alert("Please Login/Signup");
-      return;
-    }
-
-    axios
-      .post("/addToCart", {
-        email: loginUser.email,
-        order: cartedItem,
-      })
-      .then((data) => {
-        console.log(data);
-        console.log(data.data);
-        localStorage.removeItem("user");
-        localStorage.setItem("user", JSON.stringify(data.data));
-      })
-      .catch((err) => console.log(err));
-  }
-
-  function lookProduct() {
-    localStorage.removeItem("selected-product");
-
+  // function which returns object with all the properties of the selected item, fetched from the prop.
+  function getSelectedItemProperties() {
     const selectedItem = {
       title: img.title,
       ratings: img.rating.rate,
@@ -56,27 +19,68 @@ function Product({ img }) {
       quantity: 1,
     };
 
-    localStorage.setItem("selected-product", JSON.stringify(selectedItem));
+    return selectedItem;
+  }
+
+  // Function to add product to cart.
+  function addToCart() {
+    const cartedItem = getSelectedItemProperties();
+
+    // if user is not signed/logged in.
+    if (loginUser == null || loginUser == "User not found") {
+      alert("Please Login/Signup");
+      return;
+    } else {
+      axios
+        .post("/addToCart", {
+          email: loginUser.email,
+          order: cartedItem,
+        })
+        .then((data) => {
+          localStorage.removeItem(LOGGED_USER);
+          localStorage.setItem(LOGGED_USER, JSON.stringify(data.data));
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
+  // function to display selected product (more details.)
+  function viewProduct() {
+    localStorage.removeItem(SELECTED_PRODUCT);
+
+    const selectedItem = getSelectedItemProperties();
+
+    // storing the info in localstorage.
+    localStorage.setItem(SELECTED_PRODUCT, JSON.stringify(selectedItem));
   }
 
   return (
+    // Main container
     <div className="box border-2 h-auto w-50 p-4" key={Math.random()}>
-      <div className="cart cursor-pointer" onClick={getInfo}>
+      {/* Add to cart button */}
+      <div className="cart cursor-pointer" onClick={addToCart}>
         <BsFillCartPlusFill size="30" className="cart_icon" />
       </div>
+
+      {/* Product image */}
       <Link to="/selected-product">
         <img
           src={img.image}
-          onClick={lookProduct}
+          loading="lazy"
+          onClick={viewProduct}
           className="image w-50"
           alt="product_image"
         />
       </Link>
+
+      {/* Information about the product */}
       <div className="info">
+        {/* Title */}
         <div className="">
           <div className="title font-bold">{img.title}</div>
         </div>
 
+        {/* Ratings */}
         <div className="flex justify-between">
           <div className="ratings pl-0 flex items-center">
             <Rating
@@ -87,11 +91,11 @@ function Product({ img }) {
               precision={0.5}
               readOnly
             />
-            {/* <div className="rating">({img.rating.rate})</div> */}
           </div>
+
+          {/* Price */}
           <div className="price ml-2">${img.price} </div>
         </div>
-        {/* <div className="description">{img.description} </div> */}
       </div>
     </div>
   );
