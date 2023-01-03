@@ -80,7 +80,7 @@ function Navbar() {
       {/* main navbar */}
       <div
         id="navbar"
-        className="navbar w-stretch grid items-center grid-cols-3 bg-gradient-to-r from-pink-400 to-rose-900"
+        className="navbar w-stretch grid items-center grid-cols-3"
       >
         <div className="account">
           {/* drawer button */}
