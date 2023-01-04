@@ -56,7 +56,7 @@ function Product({ img }) {
 
   return (
     // Main container
-    <div className="box border-2 h-auto w-50 p-4" key={Math.random()}>
+    <div className="box border-2 h-auto w-50 p-4 grid" key={Math.random()}>
       {/* Add to cart button */}
       <div className="cart cursor-pointer" onClick={addToCart}>
         <BsFillCartPlusFill size="30" className="cart_icon" />

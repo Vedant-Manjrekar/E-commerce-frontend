@@ -83,16 +83,20 @@ body {
 }
 
 .banner {
-  height: 30vw;
+  height: 17vw;
   width: -webkit-fill-available;
   padding: 0;
+  margin: 0px 14rem;
 }
 
 .info {
-  /* position: relative; */
   text-align: center;
-  margin-top: 2rem;
+  padding-top: 2rem;
   top: 31px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .banner_image {
@@ -137,7 +141,7 @@ img {
 .image {
   width: 20vw;
   object-fit: contain;
-  height: 20vw;
+  height: 11vw;
 }
 
 .cart_main {
@@ -427,6 +431,11 @@ img {
     margin-right: 0.5rem;
   }
 
+  .banner {
+    margin: 0;
+    height: 37vw;
+  }
+
   .image {
     object-fit: contain;
     margin: auto;
@@ -521,8 +530,10 @@ img {
   }
 
   .s-prod {
-    height: 85vh;
+    height: max-content;
+    min-height: 90vh;
     overflow: scroll;
+    justify-content: center;
   }
 
   .chk_btn {
@@ -579,5 +590,9 @@ img {
 
   .quantity {
     font-size: 12px;
+  }
+
+  .image {
+    height: 30vw;
   }
 }
